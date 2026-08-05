@@ -1,54 +1,0 @@
-[1mdiff --git a/.pre-commit-config.yaml b/.pre-commit-config.yaml[m
-[1mindex 3e4bab8..dfd7b24 100644[m
-[1m--- a/.pre-commit-config.yaml[m
-[1m+++ b/.pre-commit-config.yaml[m
-[36m@@ -1,25 +1,25 @@[m
-[31m-repos:[m
-[31m-  - repo: https://github.com/astral-sh/ruff-pre-commit[m
-[31m-    rev: v0.16.1[m
-[31m-    hooks:[m
-[31m-      - id: ruff[m
-[31m-        args: [--fix][m
-[31m-      - id: ruff-format[m
-[31m-[m
-[31m-  - repo: local[m
-[31m-    hooks:[m
-[31m-      - id: mypy[m
-[31m-        name: mypy --strict[m
-[31m-        entry: uv run mypy src/[m
-[31m-        language: system[m
-[31m-        pass_filenames: false[m
-[31m-        types: [python][m
-[31m-[m
-[31m-  - repo: https://github.com/pre-commit/pre-commit-hooks[m
-[31m-    rev: v5.0.0[m
-[31m-    hooks:[m
-[31m-      - id: check-added-large-files[m
-[31m-        args: [--maxkb=1000][m
-[31m-      - id: check-merge-conflict[m
-[31m-      - id: end-of-file-fixer[m
-[32m+[m[32mrepos:[m[41m[m
-[32m+[m[32m  - repo: https://github.com/astral-sh/ruff-pre-commit[m[41m[m
-[32m+[m[32m    rev: v0.16.1[m[41m[m
-[32m+[m[32m    hooks:[m[41m[m
-[32m+[m[32m      - id: ruff[m[41m[m
-[32m+[m[32m        args: [--fix][m[41m[m
-[32m+[m[32m      - id: ruff-format[m[41m[m
-[32m+[m[41m[m
-[32m+[m[32m  - repo: local[m[41m[m
-[32m+[m[32m    hooks:[m[41m[m
-[32m+[m[32m      - id: mypy[m[41m[m
-[32m+[m[32m        name: mypy --strict[m[41m[m
-[32m+[m[32m        entry: uv run mypy src/[m[41m[m
-[32m+[m[32m        language: system[m[41m[m
-[32m+[m[32m        pass_filenames: false[m[41m[m
-[32m+[m[32m        types: [python][m[41m[m
-[32m+[m[41m[m
-[32m+[m[32m  - repo: https://github.com/pre-commit/pre-commit-hooks[m[41m[m
-[32m+[m[32m    rev: v5.0.0[m[41m[m
-[32m+[m[32m    hooks:[m[41m[m
-[32m+[m[32m      - id: check-added-large-files[m[41m[m
-[32m+[m[32m        args: [--maxkb=1000][m[41m[m
-[32m+[m[32m      - id: check-merge-conflict[m[41m[m
-[32m+[m[32m      - id: end-of-file-fixer[m[41m[m
-       - id: trailing-whitespace[m

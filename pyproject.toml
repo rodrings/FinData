@@ -1,0 +1,79 @@
+[project]
+name = "findata-engine"
+version = "0.1.0"
+description = "Add your description here"
+authors = [
+    { name = "rodrings", email = "rodri120gs@gmail.com" }
+]
+requires-python = ">=3.12"
+dependencies = [
+    "alembic>=1.13",
+    "fastapi>=0.115",
+    "httpx>=0.27",
+    "prometheus-client>=0.21",
+    "psycopg[binary,pool]>=3.2",
+    "pydantic>=2.9",
+    "pydantic-settings>=2.5",
+    "sqlalchemy>=2.0",
+    "structlog>=24.4",
+    "tenacity>=9.0",
+    "typer>=0.13",
+    "uvicorn>=0.32",
+]
+
+[project.scripts]
+findata = "findata.cli.main:app"
+
+[build-system]
+requires = ["uv_build>=0.11.7,<0.12.0"]
+build-backend = "uv_build"
+
+[tool.uv.build-backend]
+module-name = "findata"
+
+[dependency-groups]
+dev = [
+    "hypothesis>=6.115",
+    "import-linter>=2.1",
+    "mypy>=1.13",
+    "pre-commit>=4.0",
+    "pytest>=8.3",
+    "pytest-asyncio>=0.24",
+    "pytest-cov>=6.0",
+    "respx>=0.21",
+    "ruff>=0.7",
+    "testcontainers[postgres]>=4.8",
+]
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+src = ["src", "tests"]
+
+[tool.ruff.lint]
+select = [
+    "E",    # pycodestyle errors - estilo básico
+    "F",    # pyflakes - imports sin usar, variables no definidas
+    "I",    # isort - orden de imports (clave para que domain/ no
+            # se cuele un import de infrastructure/ sin que se note)
+    "UP",   # pyupgrade - fuerza sintaxis moderna de 3.12 (type X | Y)
+    "B",    # flake8-bugbear - detecta bugs sutiles (ej: mutable
+            # default arguments, except Exception genérico)
+    "C90",  # mccabe - complejidad ciclomática, evita funciones
+            # con demasiadas ramas si/else anidadas
+    "SIM",  # flake8-simplify - simplifica condicionales redundantes
+]
+ignore = []
+
+[tool.ruff.lint.mccabe]
+max-complexity = 10
+
+[tool.mypy]
+python_version = "3.12"
+strict = true
+mypy_path = "src"
+explicit_package_bases = true
+enable_error_code = ["ignore-without-code", "truthy-bool"]
+
+[[tool.mypy.overrides]]
+module = ["testcontainers.*"]
+ignore_missing_imports = true

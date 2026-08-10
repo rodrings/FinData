@@ -24,9 +24,11 @@ format:
 typecheck:
 	uv run mypy src/
 
-check: lint typecheck
+check: lint typecheck imports
 	@echo "make check: todo verde"
 
+imports:
+	uv run lint-imports
 test:
 	uv run pytest tests/ -v
 

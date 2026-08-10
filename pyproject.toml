@@ -77,3 +77,29 @@ enable_error_code = ["ignore-without-code", "truthy-bool"]
 [[tool.mypy.overrides]]
 module = ["testcontainers.*"]
 ignore_missing_imports = true
+
+[tool.importlinter]
+root_package = "findata"
+
+[[tool.importlinter.contracts]]
+name = "Arquitectura en capas: las dependencias apuntan hacia adentro"
+type = "layers"
+layers = [
+    "api",
+    "cli",
+    "application",
+    "domain",
+]
+containers = ["findata"]
+
+[[tool.importlinter.contracts]]
+name = "Domain no depende de infrastructure"
+type = "forbidden"
+source_modules = ["findata.domain"]
+forbidden_modules = ["findata.infrastructure"]
+
+[[tool.importlinter.contracts]]
+name = "Application no depende de infrastructure directamente"
+type = "forbidden"
+source_modules = ["findata.application"]
+forbidden_modules = ["findata.infrastructure"]

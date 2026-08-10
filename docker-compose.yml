@@ -1,0 +1,29 @@
+services:
+  postgres:
+    image: postgres:16
+    container_name: findata-postgres
+    environment:
+      POSTGRES_USER: findata
+      POSTGRES_PASSWORD: findata_dev_password
+      POSTGRES_DB: findata
+    ports:
+      - "5432:5432"
+    volumes:
+      - findata_pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U findata -d findata"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+    deploy:
+      resources:
+        limits:
+          cpus: "2"
+          memory: 2G
+        reservations:
+          cpus: "0.5"
+          memory: 512M
+
+volumes:
+  findata_pgdata:
